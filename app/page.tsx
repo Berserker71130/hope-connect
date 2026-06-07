@@ -1,176 +1,136 @@
 "use client";
 
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { ToastProvider } from "@/components/ui/toast-provider";
+import { toast } from "@/components/ui/toast";
 
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { RadioGroup } from "@/components/ui/radio-group";
+export default function ToastVerificationSandbox() {
+  // Custom Action Callback Simulation
+  const handleViewReceipt = () => {
+    alert("System Route Action: Opening Transaction Receipt Ledger.");
+  };
 
-const testSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters."),
-  bio: z.string().min(15, "Bio must be a descriptive block (min 15 chars)."),
-  framework: z
-    .string()
-    .min(1, "You must select a primary architecture framework."),
-  environment: z.string().min(1, "Please pick a deployment runtime target."),
-  terms: z
-    .boolean()
-    .refine((val) => val === true, "Acknowledge compliance to proceed."),
-});
-
-type TestFormValues = z.infer<typeof testSchema>;
-
-export default function CompleteFormTestPage() {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors, touchedFields },
-  } = useForm<TestFormValues>({
-    resolver: zodResolver(testSchema),
-    defaultValues: {
-      username: "",
-      bio: "",
-      framework: "",
-      environment: "",
-      terms: false,
-    },
-  });
-
-  const onSubmit = (data: TestFormValues) => {
-    console.log("Verified System State Matrix:", data);
-    alert("Form Submitted Successfully!");
+  const handleUndoAction = () => {
+    alert("System Route Action: Form Submission Rolling Back.");
   };
 
   return (
-    // EXPANDED: Changed to w-full and maximum screen padding for desktop optimization
     <div className="min-h-screen bg-gray-50/50 py-12 px-6 lg:px-16 w-full font-sans">
-      <div className="w-full space-y-8">
-        {/* Full Width Header */}
+      {/* Toast Engine Global Mount Mount */}
+      <ToastProvider />
+
+      <div className="w-full space-y-8 max-w-4xl mx-auto">
+        {/* Header Block Metadata */}
         <div className="border-b border-gray-200 pb-5 w-full">
-          <span className="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full uppercase tracking-wider">
-            Verification Sandbox — Issue UI-04 (#5)
+          <span className="text-xs font-mono font-bold text-purple-600 bg-purple-50 px-2.5 py-1 rounded-full uppercase tracking-wider">
+            Verification Sandbox — Issue UI-05 (#6)
           </span>
           <h1 className="text-4xl font-black text-gray-900 tracking-tight mt-3">
-            Form Primitive Audit Environment
+            Toast Notification System
           </h1>
           <p className="text-base text-gray-500 mt-1">
-            Testing focus rings, error validations, success checkmarks, and WCAG
-            accessibility loops across a full desktop canvas.
+            Testing entry animations, professional left-border colors, custom
+            actions, and automatic 5s dimming.
           </p>
         </div>
 
-        {/* EXPANDED: Swapped to a 2-column wide grid for desktop layout */}
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-          className="bg-white p-10 rounded-xl shadow-md border border-gray-100 w-full grid grid-cols-1 lg:grid-cols-2 gap-8"
-        >
-          {/* Left Column Group */}
-          <div className="space-y-6">
-            <Input
-              label="System Operator Alias"
-              placeholder="e.g., dev_alpha"
-              required
-              error={errors.username?.message}
-              isSuccess={touchedFields.username && !errors.username}
-              {...register("username")}
-            />
-
-            <Controller
-              name="framework"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  label="Primary Architecture Framework"
-                  placeholder="Select core package..."
-                  required
-                  error={errors.framework?.message}
-                  isSuccess={touchedFields.framework && !errors.framework}
-                  options={[
-                    { value: "next", label: "Next.js Core SSR Engine" },
-                    { value: "remix", label: "Remix Data Router Kit" },
-                    { value: "vite", label: "Vanilla React Bundle (Vite)" },
-                  ]}
-                  value={field.value}
-                  onChange={field.onChange}
-                  ref={field.ref}
-                />
-              )}
-            />
-
-            <Controller
-              name="environment"
-              control={control}
-              render={({ field }) => (
-                <RadioGroup
-                  label="Deployment Target Zone"
-                  required
-                  error={errors.environment?.message}
-                  isSuccess={touchedFields.environment && !errors.environment}
-                  options={[
-                    {
-                      value: "edge",
-                      label: "Global Edge Clusters (Zero Latency)",
-                    },
-                    {
-                      value: "origin",
-                      label: "Centralized Dedicated Origin Servers",
-                    },
-                  ]}
-                  value={field.value}
-                  onChange={field.onChange}
-                  ref={field.ref}
-                />
-              )}
-            />
-          </div>
-
-          {/* Right Column Group */}
-          <div className="space-y-6 flex flex-col justify-between">
-            <Textarea
-              label="Operational Environment Scope"
-              placeholder="Describe your runtime clustering strategies and configuration mappings..."
-              required
-              error={errors.bio?.message}
-              isSuccess={touchedFields.bio && !errors.bio}
-              className="min-h-[150px]"
-              {...register("bio")}
-            />
-
-            <Controller
-              name="terms"
-              control={control}
-              render={({ field }) => (
-                <Checkbox
-                  label="I authorize runtime cluster reconfiguration parameters and state definitions."
-                  required
-                  error={errors.terms?.message}
-                  isSuccess={touchedFields.terms && !errors.terms}
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                  ref={field.ref}
-                  name={field.name}
-                />
-              )}
-            />
-
-            {/* Form Actions spanning full width of its column */}
-            <div className="pt-4">
-              <button
-                type="submit"
-                className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow transition-all focus:ring-4 focus:ring-blue-500/30 flex items-center justify-center cursor-pointer text-sm"
-              >
-                Verify Core Systems & Submit
-              </button>
+        {/* Dashboard Auditing Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+          {/* SUCCESS ROW */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+            <div>
+              <h3 className="text-md font-bold text-gray-900">
+                Celebratory Success Notifications
+              </h3>
+              <p className="text-xs text-gray-400">
+                Triggered on successful donations and processed transactions.
+              </p>
             </div>
+            <button
+              onClick={() =>
+                toast.success(
+                  "Donation Processed! 🎉",
+                  "Thank you so much! Your contribution of $150.00 has safely cleared corporate processing layers.",
+                  { label: "View Receipt", onClick: handleViewReceipt },
+                )
+              }
+              className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm transition-all shadow-sm cursor-pointer"
+            >
+              Fire Donation Success Toast
+            </button>
           </div>
-        </form>
+
+          {/* ERROR ROW */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+            <div>
+              <h3 className="text-md font-bold text-gray-900">
+                Helpful Error Controls
+              </h3>
+              <p className="text-xs text-gray-400">
+                Non-scary messages focusing cleanly on explicit solutions.
+              </p>
+            </div>
+            <button
+              onClick={() =>
+                toast.error(
+                  "Transaction Interrupted",
+                  "The payment processing secure pipeline timed out. Please verify your banking connection and try again.",
+                )
+              }
+              className="w-full h-11 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-sm transition-all shadow-sm cursor-pointer"
+            >
+              Fire Network Error Toast
+            </button>
+          </div>
+
+          {/* INFO ROW */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+            <div>
+              <h3 className="text-md font-bold text-gray-900">
+                Informational Sync Notifications
+              </h3>
+              <p className="text-xs text-gray-400">
+                Used for async actions like volunteer role distribution updates.
+              </p>
+            </div>
+            <button
+              onClick={() =>
+                toast.info(
+                  "Volunteer Sync Complete",
+                  "Your user credentials have been mapped successfully to the upcoming Regional Summit event list.",
+                  { label: "Undo Update", onClick: handleUndoAction },
+                )
+              }
+              className="w-full h-11 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-sm transition-all shadow-sm cursor-pointer"
+            >
+              Fire Volunteer Info Toast
+            </button>
+          </div>
+
+          {/* WARNING ROW */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 space-y-4">
+            <div>
+              <h3 className="text-md font-bold text-gray-900">
+                Proactive System Warnings
+              </h3>
+              <p className="text-xs text-gray-400">
+                Alerts users to impending thresholds or configuration
+                dependencies.
+              </p>
+            </div>
+            <button
+              onClick={() =>
+                toast.warning(
+                  "Session Expiry Warning",
+                  "Your active secure session will auto-terminate in 2 minutes due to compliance timeout rules.",
+                )
+              }
+              className="w-full h-11 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg text-sm transition-all shadow-sm cursor-pointer"
+            >
+              Fire System Warning Toast
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
