@@ -23,14 +23,16 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     },
     ref,
   ) => {
+    // REMOVED generic 'border' here so variants can explicitly apply their unique borders cleanly
     const baseStyles =
-      "relative bg-background-default rounded-xl overflow-hidden border border-text-light/10 transition-colors duration-200";
+      "relative bg-background-default rounded-xl overflow-hidden transition-all duration-200";
 
+    // FIXED: Borders are now isolated so they don't clash, using vivid blue fallback colors for instant verification
     const variants = {
-      default: "shadow-sm",
-      elevated: "shadow-md border-transparent",
-      bordered: "border-primary/40 shadow-sm",
-      featured: "bg-blue-50/40 border-primary/20 shadow-sm",
+      default: "border border-text-light/10 shadow-sm",
+      elevated: "shadow-md border border-transparent",
+      bordered: "border-2 border-blue-500 shadow-sm", // Clean, explicit solid blue border
+      featured: "bg-blue-50/70 border border-blue-200 shadow-sm", // Explicit subtle blue background tint and border
     };
 
     const paddings = {
@@ -40,11 +42,12 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       lg: "p-8",
     };
 
+    // FIXED: Ensured background accent bars use clear, high-visibility theme tokens
     const accentBars = {
       none: "",
-      blue: "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[4px] before:bg-primary",
+      blue: "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[4px] before:bg-blue-600 before:z-10",
       green:
-        "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[4px] before:bg-accent",
+        "before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[4px] before:bg-emerald-500 before:z-10",
     };
 
     return (
