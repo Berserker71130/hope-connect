@@ -14,6 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import ActiveCampaigns from "@/components/campaigns/ActiveCampaigns";
+import ImpactStats from "@/components/impact/ImpactStats";
 
 export default function PremiumHomepage() {
   // High performance smooth interface scroll anchor calculation mapping
@@ -235,6 +236,7 @@ export default function PremiumHomepage() {
         </div>
       </section>
       <ActiveCampaigns />
+      <ImpactStats />
     </div>
   );
 }

@@ -102,8 +102,7 @@ export const dummyCampaigns: Campaign[] = [
     status: "Urgent",
     targetAmount: 35000,
     currentAmount: 28450,
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", //To change later
+    image: "/images/campaigns/emergencypipes.jpg",
     tiers: [
       {
         amount: 25,
@@ -163,6 +162,76 @@ export const dummyCampaigns: Campaign[] = [
     image:
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", //To change later
     tiers: [],
+  },
+  {
+    id: "camp-4",
+    title: "Mobile Healthcare Clinic Expansion Unit",
+    description:
+      "Equipping and deploying a specialized all-terrain heavy maternal health unit to provide life saving neonatal screenings and basic vaccinations to isolated rural populations.",
+    category: "Healthcare",
+    status: "Active",
+    targetAmount: 95000,
+    currentAmount: 89700,
+    image:
+      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80", //To change later
+    tiers: [
+      {
+        amount: 50,
+        impact:
+          "Covers essential vaccinations and immediate health screenings for two newborns.",
+      },
+      {
+        amount: 150,
+        impact:
+          "Sponsors emergency mid-wife diagnostic supply kits for off-grid field clinics.",
+      },
+    ],
+  },
+  {
+    id: "camp-5",
+    title: "Acute Malnutrition Crisis Nutrition Pipeline",
+    description:
+      "Rapid tactical provisioning of therapeutic high-protein meal distributions explicitly targeted at safeguarding childhood development across emergency municipal sectors.",
+    category: "Disaster Response",
+    status: "Urgent",
+    targetAmount: 65000,
+    currentAmount: 61800,
+    image: "/images/campaigns/nutrition.jpg", //To change later
+    tiers: [
+      {
+        amount: 35,
+        impact:
+          "Provides a continuous two-week supply of high-protein emergency therapeutic food paste packages.",
+      },
+      {
+        amount: 120,
+        impact:
+          "Funds full baseline nutrition therapy management cycles for a severely malnourished infant.",
+      },
+    ],
+  },
+  {
+    id: "camp-6",
+    title: "Community Wildlife Care & Habitat Sanctuary",
+    description:
+      "Building specialized rescue facilities, veterinary containment centers, and rehabilitation programs to protect vulnerable domestic and wild populations in expanding urban areas.",
+    category: "Environment",
+    status: "Active",
+    targetAmount: 15000,
+    currentAmount: 13900,
+    image: "/images/campaigns/wildlifepreservation.jpg",
+    tiers: [
+      {
+        amount: 40,
+        impact:
+          "Supplies professional first-aid veterinary kits and specialized containment food arrays.",
+      },
+      {
+        amount: 200,
+        impact:
+          "Secures durable shelter framework infrastructure for incoming rehabilitated wildlife groups.",
+      },
+    ],
   },
 ];
 
@@ -308,4 +377,86 @@ export const dummyPartners: PartnerOrganization[] = [
     tier: "Silver",
     logoUrl: "https://example.com/logos/hfa.png",
   }, //to change later
+];
+
+export interface HomeImpactStat {
+  id: string;
+  targetNumber: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+  currentProgressValue: number;
+  maxProgressValue: number;
+  progressVariant: "blue" | "green" | "orange";
+  progressLabel: string;
+  iconName: "Heart" | "DollarSign" | "Users" | "MapPin"; // Strongly typed string matcher for Lucide
+  title: string;
+  description: string;
+  iconBgColor: string;
+  iconColor: string;
+}
+
+export const dummyHomeStats: HomeImpactStat[] = [
+  {
+    id: "stat-lives-impacted",
+    targetNumber: 10000,
+    suffix: "+",
+    currentProgressValue: 10650,
+    maxProgressValue: 12000,
+    progressVariant: "blue",
+    progressLabel: "Impact Reach Track",
+    iconName: "Heart",
+    title: "Lives Impacted",
+    description:
+      "Direct beneficiaries provided with clean water infrastructure, nutritional pipelines, and medical supplies.",
+    iconBgColor: "bg-blue-50 dark:bg-blue-950/20",
+    iconColor: "text-blue-600 dark:text-blue-400",
+  },
+  {
+    id: "stat-funds-raised",
+    targetNumber: 1.2,
+    prefix: "$",
+    suffix: "M",
+    decimals: 1,
+    currentProgressValue: 1240000,
+    maxProgressValue: 1500000,
+    progressVariant: "green",
+    progressLabel: "Q2 Financial Allocation",
+    iconName: "DollarSign",
+    title: "Funds Raised",
+    description:
+      "Transparent, audited asset deployment routed straight into active field-level programs worldwide.",
+    iconBgColor: "bg-emerald-50 dark:bg-emerald-950/20",
+    iconColor: "text-emerald-600 dark:text-emerald-400",
+  },
+  {
+    id: "stat-volunteers-mobilized",
+    targetNumber: 500,
+    suffix: "+",
+    currentProgressValue: 512,
+    maxProgressValue: 600,
+    progressVariant: "blue",
+    progressLabel: "Active Field Units",
+    iconName: "Users",
+    title: "Volunteers Engaged",
+    description:
+      "Dedicated deployment personnel managing logistical chains and onsite construction operations daily.",
+    iconBgColor: "bg-sky-50 dark:bg-sky-950/20",
+    iconColor: "text-sky-600 dark:text-sky-400",
+  },
+  {
+    id: "stat-communities-served",
+    targetNumber: 50,
+    suffix: "+",
+    currentProgressValue: 54,
+    maxProgressValue: 60,
+    progressVariant: "orange",
+    progressLabel: "Regional Saturation",
+    iconName: "MapPin",
+    title: "Communities Served",
+    description:
+      "Isolated rural territories fully integrated into our regional development and clean water systems.",
+    iconBgColor: "bg-orange-50 dark:bg-orange-950/20",
+    iconColor: "text-orange-600 dark:text-orange-400",
+  },
 ];
