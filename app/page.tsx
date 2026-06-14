@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+import ActiveCampaigns from "@/components/campaigns/ActiveCampaigns";
 
 export default function PremiumHomepage() {
   // High performance smooth interface scroll anchor calculation mapping
@@ -233,6 +234,7 @@ export default function PremiumHomepage() {
           </div>
         </div>
       </section>
+      <ActiveCampaigns />
     </div>
   );
 }
