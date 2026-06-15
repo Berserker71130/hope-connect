@@ -53,7 +53,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     }
 
     return (
-      <div className="w-full space-y-2 flex fex-col items-start">
+      <div className="w-full space-y-2 flex flex-col items-start">
         <label
           id={`${selectId}-label`}
           className="text-small font-bold text-text-primary flex items-center gap-1 select-none"

@@ -111,7 +111,7 @@ export const LinearProgress = ({
         <ProgressPrimitive.Indicator asChild>
           <motion.div
             className={`h-full w-full ${colors.fill}`}
-            initial={{ transform: "translateX(-100%" }}
+            initial={{ transform: "translateX(-100%)" }}
             animate={{ transform: `translateX(-${100 - percentage}%)` }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} //Smooth, clean hardware easing
           />

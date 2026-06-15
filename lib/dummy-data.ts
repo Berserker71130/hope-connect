@@ -139,7 +139,7 @@ export const dummyCampaigns: Campaign[] = [
     ],
   },
   {
-    id: "capm-2",
+    id: "camp-2",
     title: "Bright Futures Digital Literacy Initiative",
     description:
       "Sponsoring computer, robust learning materials, and modern internet infrastructure for low income secondary schools.",
