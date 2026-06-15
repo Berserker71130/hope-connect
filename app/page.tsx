@@ -17,6 +17,7 @@ import ActiveCampaigns from "@/components/campaigns/ActiveCampaigns";
 import ImpactStats from "@/components/impact/ImpactStats";
 import VolunteerTeaser from "@/components/volunteer/VolunteerTeaser";
 import ImpactStories from "@/components/impact/ImpactStories";
+import { UpcomingEvents } from "@/components/events/UpcomingEvents";
 
 export default function PremiumHomepage() {
   // High performance smooth interface scroll anchor calculation mapping
@@ -241,6 +242,7 @@ export default function PremiumHomepage() {
       <ImpactStats />
       <ImpactStories />
       <VolunteerTeaser />
+      <UpcomingEvents />
     </div>
   );
 }
