@@ -199,7 +199,7 @@ function AdminCampaignsContent() {
       </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-        <aside className="lg:col-span-1 border border-text-light/10 rounded-xl bg-background-default p-6 space-y-6 shadow-sm sticky top-6">
+        <aside className="lg:col-span-1 border border-text-light/10 rounded-xl bg-background-default p-6 space-y-6 shadow-sm lg:sticky top-6">
           <div className="flex items-center justify-between border-b border-text-light/10 pb-4">
             <h2 className="text-body font-sans font-bold text-text-primary flex items-center gap-2">
               <SlidersHorizontal className="w-4 h-4 text-text-muted" />
