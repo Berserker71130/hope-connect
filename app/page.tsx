@@ -90,13 +90,13 @@ export default function PremiumHomepage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto shrink-0"
           >
             {/* Primary Orange Call To Action Button Element */}
             <Button
               variant="secondary"
               size="xl"
-              className="font-medium shadow-professional flex items-center justify-center"
+              className="font-medium shadow-professional flex items-center justify-center shrink-0"
               leftIcon={<Heart className="h-5 w-5 fill-white text-white" />}
             >
               Donate Now
@@ -106,7 +106,7 @@ export default function PremiumHomepage() {
             <Button
               variant="outline"
               size="xl"
-              className="text-white border-white/20 hover:border-white/60 hover:bg-white/10 font-medium flex items-center justify-center"
+              className="text-white border-white/20 hover:border-white/60 hover:bg-white/10 font-medium flex items-center justify-center shrink-0"
               leftIcon={<Users className="h-5 w-5 text-slate-300" />}
             >
               Become a Volunteer
@@ -119,7 +119,7 @@ export default function PremiumHomepage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="absolute bottom-20 md:bottom-24 left-0 w-full px-6 lg:px-16 z-10 pointer-events-none"
+          className="absolute bottom-10 md:bottom-12 left-0 w-full px-6 lg:px-16 z-10 pointer-events-none"
         >
           <div className="max-w-7xl mx-auto w-full bg-white/[0.02] backdrop-blur-xl rounded-lg border border-white/10 p-4 md:p-6 shadow-professional">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-8">
