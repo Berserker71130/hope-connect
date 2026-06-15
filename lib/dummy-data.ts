@@ -24,6 +24,8 @@ export interface VolunteerOpportunity {
   timeCommitment: string;
   date: string;
   slotsAvailable: number;
+  image: string;
+  skillsNeeded: string[];
 }
 
 export interface VolunteerProfile {
@@ -241,24 +243,60 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     title: "Weekend Food Security Support",
     description:
       "Sort nutritional supplies, pack dynamic family boxes and assist distribution teams at municipal parks.",
-    category: "Poverty Relief",
-    location: "Metropolian Food Distribution Hub",
+    category: "poverty-relief",
+    location: "Metropolitan Food Distribution Hub",
     coordinates: { lat: 40.7128, lng: -74.006 },
     timeCommitment: "4 hours (Saturdays)",
     date: "2026-06-13",
     slotsAvailable: 15,
+    image:
+      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80", // Real volunteers distributing food supplies
+    skillsNeeded: ["No Experience Needed", "Heavy Lifting", "Teamwork"],
   },
   {
     id: "opp-2",
     title: "Remote STEM Coding Mentor",
     description:
       "Guide high school students from underprivileged sectors through foundational interactive web design projects.",
-    category: "Education",
+    category: "education",
     location: "Remote / Online via Video Conference",
     coordinates: { lat: 0, lng: 0 },
     timeCommitment: "2 hours/week (Flexible)",
     date: "2026-06-15",
     slotsAvailable: 4,
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80", // Digital tutoring / mentoring in action
+    skillsNeeded: ["HTML/CSS", "Mentoring", "Patient Communicator"],
+  },
+  {
+    id: "opp-3",
+    title: "Community Eco-Garden Build",
+    description:
+      "Help construct raised garden beds, set up irrigation paths, and plant native fruit crops for municipal food access.",
+    category: "environment",
+    location: "Greenheart Urban Sanctuary",
+    coordinates: { lat: 34.0522, lng: -118.2437 },
+    timeCommitment: "One-time event (6 hours)",
+    date: "2026-06-20",
+    slotsAvailable: 20,
+    image:
+      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=800&q=80",
+    skillsNeeded: ["Hand Tools", "Physical Stamina", "Outdoor Work"],
+  },
+  {
+    id: "opp-4",
+    title: "Wildlife Sanctuary Habitat Care",
+    description:
+      "Assist veterinary containment teams in cleaning habitats, preparing specialized dietary arrays, and upgrading enclosures.",
+    category: "animal-welfare",
+    location: "Riverside Rescue Center",
+    coordinates: { lat: 34.0522, lng: -118.2437 },
+    timeCommitment: "3 hours/week (3 mos.)",
+    date: "2026-06-25",
+    slotsAvailable: 6,
+    image:
+      "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80",
+    skillsNeeded: ["Animal Handling", "Detail Oriented", "Safety First"],
   },
 ];
 
