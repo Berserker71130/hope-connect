@@ -41,7 +41,15 @@ export interface ImpactStory {
   id: string;
   title: string;
   beneficiary: string;
-  category: string;
+  category:
+    | "education"
+    | "healthcare"
+    | "poverty-relief"
+    | "environment"
+    | "emergency"
+    | "animal-welfare";
+  location: string;
+  quote: string;
   outcome: string;
   narrative: string;
   image: string;
@@ -51,12 +59,19 @@ export interface NGOEvent {
   id: string;
   title: string;
   description: string;
+  category: "poverty-relief" | "environment" | "education" | "emergency";
+  eventTypeLabel:
+    | "Fundraising Gala"
+    | "Community Cleanup"
+    | "Workshop"
+    | "Volunteer Orientation";
   date: string;
   time: string;
   location: string;
   coordinates: { lat: number; lng: number };
   attendeeCount: number;
   maxCapacity: number;
+  image: string;
 }
 
 export interface DonationHistory {
@@ -161,8 +176,7 @@ export const dummyCampaigns: Campaign[] = [
     status: "Completed",
     targetAmount: 12000,
     currentAmount: 12450,
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", //To change later
+    image: "/images/campaigns/aforestation.jpg",
     tiers: [],
   },
   {
@@ -174,8 +188,7 @@ export const dummyCampaigns: Campaign[] = [
     status: "Active",
     targetAmount: 95000,
     currentAmount: 89700,
-    image:
-      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80", //To change later
+    image: "/images/campaigns/mobilehealth.jpg",
     tiers: [
       {
         amount: 50,
@@ -316,13 +329,77 @@ export const dummyImpactStories: ImpactStory[] = [
     id: "story-1",
     title: "Breaking Barriers Through Tech Literacy",
     beneficiary: "Amara Diop",
-    category: "Education",
+    category: "education",
+    location: "Dakar Regional District",
+    quote:
+      "I used to think programming was for other people, not me. This community training laboratory opened a door to a future I never dreamed was possible.",
     outcome:
-      "Secured a full tution University Engineering schorlaship following community training programs.",
+      "Secured a full tuition University Engineering scholarship following community training programs.",
     narrative:
-      "Amara, a bright and determined student from a low-income neighborhood, faced significant barriers to accessing quality education. Through our Bright Futures Digital Literacy Initiative, she received a tablet preloaded with educational software and e-books, along with access to online resources. With the support of our volunteer mentors, Amara developed strong digital skills and excelled in her studies. Her dedication and newfound confidence led her to secure a full tuition scholarship to a prestigious university’s engineering program, where she is now thriving and inspiring others in her community.",
+      "Amara, a determined student from a low-income neighborhood, faced significant barriers to accessing quality technical education. Through our Bright Futures digital literacy initiatives, she received a tablet preloaded with software along with dedicated access to online training materials...",
     image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80", //To change later
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "story-2",
+    title: "Lifesaving Care on Wheels",
+    beneficiary: "Elena Rostova",
+    category: "healthcare",
+    location: "Vance Valley Settlement",
+    quote:
+      "When my child fell ill with severe complications, the mobile health unit arrived within hours. Their rapid treatment completely saved his life.",
+    outcome:
+      "Received critical emergency neonatal screening and vaccinations via the all-terrain mobile clinic unit.",
+    narrative:
+      "Living in an isolated territory cut off from municipal clinical centers, Elena struggled to find stable health oversight. Our expansion health unit reached her community in record time, deploying necessary medical support packages directly to her doorstep...",
+    image:
+      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "story-3",
+    title: "From Food Insecurity to Stability",
+    beneficiary: "Samuel Mwangi",
+    category: "poverty-relief",
+    location: "Metro Distribution Sector",
+    quote:
+      "The nutritional support boxes helped our family get through the hardest months of the seasonal workforce gap. We are finally back on our feet.",
+    outcome:
+      "Maintained critical household dietary stability via weekly specialized food pipeline allocations.",
+    narrative:
+      "Sudden economic contraction left Samuel and his dependents facing an immediate food deficit gap. Accessing the weekly municipal park distribution network enabled them to stabilize their essential food requirements safely...",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "story-4",
+    title: "Restoring the Shield of the Coastline",
+    beneficiary: "Ananya Nair",
+    category: "environment",
+    location: "Kerala Coastal Border",
+    quote:
+      "Watching the new mangrove roots hold the soil against the seasonal storm tides gave us our first real sense of safety in years.",
+    outcome:
+      "Stabilized over two kilometers of highly vulnerable shoreline using community-planted native saplings.",
+    narrative:
+      "Severe seasonal storms and aggressive erosion threatened the physical stability of Ananya's coastal fishing community. By organizing a localized restoration drive, residents planted thousands of native saplings that have grown into a massive natural barrier.",
+    image:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80", // Dignified, professional portrait
+  },
+
+  {
+    id: "story-5",
+    title: "Rebuilding After the Flash Flood",
+    beneficiary: "Mateo Silva",
+    category: "emergency",
+    location: "Serrana Valley Region",
+    quote:
+      "The rapid tactical distribution team arrived with water filters and emergency food paste within twelve hours of the river breaking its banks.",
+    outcome:
+      "Sustained vital sanitary parameters for four hundred displaced residents during a sudden climate crisis.",
+    narrative:
+      "When unexpected heavy rainfall triggered destructive flash flooding across the valley, Mateo's family lost access to clean municipal infrastructure. The immediate arrival of our disaster response units successfully prevented contamination outbreaks.",
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80", // Dignified, professional portrait
   },
 ];
 
@@ -331,13 +408,49 @@ export const dummyEvents: NGOEvent[] = [
     id: "event-1",
     title: "HopeConnect Annual Charity Gala",
     description:
-      "An inspiring evening showcasing visual impact metrics, partner panels, community testimonials and fundraiser banquets.",
-    date: "2026-07-25",
+      "An inspiring evening showcasing visual impact metrics, partner panels, community testimonials, and high-value fundraiser banquets.",
+    category: "poverty-relief",
+    eventTypeLabel: "Fundraising Gala",
+    date: "2026-07-25", // Perfect for date-fns reading
     time: "18:00 - 22:00",
     location: "Grand Horizon Pavilion",
     coordinates: { lat: 34.0522, lng: -118.2437 },
     attendeeCount: 142,
     maxCapacity: 200,
+    image:
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "event-2",
+    title: "Urban Sanctuary Coastline Cleanup",
+    description:
+      "Join hands with local conservation teams to clear single-use plastics and stabilize marine breeding environments.",
+    category: "environment",
+    eventTypeLabel: "Community Cleanup",
+    date: "2026-08-12",
+    time: "08:00 - 12:00",
+    location: "Greenheart Urban Sanctuary",
+    coordinates: { lat: 34.0522, lng: -118.2437 },
+    attendeeCount: 45,
+    maxCapacity: 100,
+    image:
+      "https://images.unsplash.com/photo-1618477388954-7852f32655ec?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: "event-3",
+    title: "Foundational Grant Management Workshop",
+    description:
+      "A comprehensive training masterclass detailing strategic fund tracking, auditing configurations, and field transparency frameworks.",
+    category: "education",
+    eventTypeLabel: "Workshop",
+    date: "2026-09-05",
+    time: "14:00 - 17:30",
+    location: "Metro Distribution Center Core",
+    coordinates: { lat: 40.7128, lng: -74.006 },
+    attendeeCount: 28,
+    maxCapacity: 40,
+    image:
+      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
