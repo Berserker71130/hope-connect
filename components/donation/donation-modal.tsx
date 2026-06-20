@@ -5,6 +5,7 @@ import { useState, useTransition, useMemo } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import ImpactBreakdown from "../campaigns/impact-breakdown";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart,
@@ -234,22 +235,9 @@ Thank you for your generous dedication. Your tax-deductible token is authenticat
   };
 
   const handleModalClose = () => {
-    // Force reset everything to standard pristine blanks, overriding the parent props
-    form.reset({
-      amount: 50,
-      isRecurring: false,
-      frequency: "monthly" as const,
-      name: "", // 📑 Overwrites the prop and forces it empty
-      email: "",
-      phone: "",
-      country: "NG",
-      isAnonymous: false,
-      dedication: "", // 📑 Overwrites the dedication text and forces it empty
-      paymentMethod: "card" as const,
-      agreeToTerms: false,
-    });
-    setStep(1); // Snaps the view back to Step 1
-    onClose(); // Closes the modal visibility
+    form.reset();
+    setStep(1);
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -350,8 +338,19 @@ Thank you for your generous dedication. Your tax-deductible token is authenticat
                     label="Custom Donation Amount ($USD)"
                     type="number"
                     placeholder="Enter explicit allocation value"
-                    onError={(errors as any).amount?.message}
+                    // onError={(errors as any).amount?.message}
                     {...form.register("amount")}
+                  />
+                </div>
+
+                <div className="pt-2">
+                  <ImpactBreakdown
+                    currentAmount={currentAmount}
+                    onSelectAmount={(selectedAmount) =>
+                      setValue("amount", selectedAmount, {
+                        shouldValidate: true,
+                      })
+                    }
                   />
                 </div>
 
@@ -400,18 +399,6 @@ Thank you for your generous dedication. Your tax-deductible token is authenticat
                       ))}
                     </motion.div>
                   )}
-                </div>
-
-                <div className="p-4 bg-blue-50/50 border border-blue-100 rounded-xl flex gap-3 items-start">
-                  <Heart className="w-5 h-5 text-blue-600 shrink-0 mt-0.5 fill-blue-600/10" />
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-blue-800">
-                      Your Calculated Impact
-                    </h4>
-                    <p className="text-xs text-blue-900 font-medium mt-1 leading-relaxed">
-                      {calculatedImpactText}
-                    </p>
-                  </div>
                 </div>
               </motion.div>
             )}
