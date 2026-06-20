@@ -46,7 +46,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       "border-text-light/20 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20";
     if (error) {
       borderStyles =
-        "border-orange-500 focus:border-orange-600 focus-ring-4 focus:ring-orange-500/20";
+        "border-orange-500 focus:border-orange-600 focus:ring-4 focus:ring-orange-500/20";
     } else if (isSuccess) {
       borderStyles =
         "border-emerald-500 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/20";

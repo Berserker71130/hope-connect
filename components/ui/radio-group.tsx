@@ -80,7 +80,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                 "border-orange-500 focus:border-orange-600 focus:ring-4 focus:ring-orange-500/20 data-[state=checked]:border-orange-600";
             } else if (isSuccess) {
               itemBorder =
-                "border-emeraled-500 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/20 data-[state=checked]:border-emerald-600";
+                "border-emerald-500 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/20 data-[state=checked]:border-emerald-600";
             }
 
             return (

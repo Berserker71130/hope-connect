@@ -87,7 +87,7 @@ export const ToastNotification: React.FC<CustomToastProps> = ({
         <button
           type="button"
           onClick={() => hotToast.dismiss(t.id)}
-          className="w-full border border-transparent rounded-none rounded-r-xl p-4 flex items-center justify-center ext-sm font-medium text-gray-400 hover:text-gray-500 focus:outline-none transition-colors cursor-pointer"
+          className="w-full border border-transparent rounded-none rounded-r-xl p-4 flex items-center justify-center text-sm font-medium text-gray-400 hover:text-gray-500 focus:outline-none transition-colors cursor-pointer"
           aria-label="Dismiss notification"
         >
           <X className="h-4 w-4" />

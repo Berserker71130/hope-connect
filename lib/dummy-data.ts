@@ -1,3 +1,18 @@
+export interface CampaignUpdate {
+  id: string;
+  date: string;
+  title: string;
+  content: string;
+}
+
+export interface RecentDonor {
+  id: string;
+  name: string;
+  amount: number;
+  date: string;
+  message?: string;
+}
+
 export interface Campaign {
   id: string;
   title: string;
@@ -13,6 +28,14 @@ export interface Campaign {
   currentAmount: number;
   image: string;
   tiers: { amount: number; impact: string }[];
+  organizationName?: string;
+  location?: string;
+  daysRemaining?: number;
+  donorCount?: number;
+  storyRichText?: string;
+  youtubeEmbedUrl?: string;
+  updates?: CampaignUpdate[];
+  recentDonors?: RecentDonor[];
 }
 export interface VolunteerOpportunity {
   id: string;

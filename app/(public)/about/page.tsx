@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div>Platform Page</div>;
+  return <div>About Platform Page</div>;
 }

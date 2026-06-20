@@ -29,7 +29,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const errorId = `${textareaId}-error`;
 
     let borderStyles =
-      "border-text-light/20 focus:border-blue-500 focus:ring-blue-4 focus:ring-blue-500/20";
+      "border-text-light/20 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20";
     if (error) {
       borderStyles =
         "border-orange-500 focus:border-orange-600 focus:ring-4 focus:ring-orange-500/20";
@@ -64,7 +64,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             {...props}
           />
           {isSuccess && !error && (
-            <div className="absolute right-3.5 top4 text-emerald-500">
+            <div className="absolute right-3.5 top-4 text-emerald-500">
               <CheckCircle2 className="w-5 h-5 fill-current bg-background-default" />
             </div>
           )}
