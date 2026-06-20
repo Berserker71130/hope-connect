@@ -21,6 +21,7 @@ import { LinearProgress } from "@/components/ui/progress";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/toast";
+import { DonationModal } from "@/components/donation/donation-modal";
 import {
   Bird,
   Book,
@@ -62,6 +63,7 @@ export default function CampaignDetailPage() {
   const [donorName, setDonorName] = React.useState<string>("");
   const [donorMessage, setDonorMessage] = React.useState<string>("");
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
   // DERIVED METRICS
   const activeAmount =
@@ -96,6 +98,7 @@ export default function CampaignDetailPage() {
   const handleDonationSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // 1. Guard against invalid custom amount entries
     if (
       selectedAmount === "custom" &&
       (!customAmount || Number(customAmount) < 500)
@@ -107,18 +110,8 @@ export default function CampaignDetailPage() {
       return;
     }
 
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success(
-        "Donation Processed!",
-        `Thank you ${donorName || "Anonymous"} for your incredible pledge of ₦${activeAmount.toLocaleString()} via ${paymentMethod.toUpperCase()}`!,
-      );
-      setCustomAmount("");
-      setDonorName("");
-      setDonorMessage("");
-    }, 2500);
+    // 2. Clear to go! Slide open the modal with all data pre-loaded
+    setIsModalOpen(true);
   };
 
   // Safe fallback processing defaults for sub-nested structures
@@ -628,6 +621,22 @@ export default function CampaignDetailPage() {
           ))}
         </div>
       </section>
+
+      {/* Dynamic Multi-Step Secure Checkout Overlay */}
+      {/* Dynamic Multi-Step Secure Checkout Overlay */}
+      <DonationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        campaignId={campaign.id}
+        campaignTitle={campaign.title}
+        campaignCategory={campaign.category.toLowerCase() as any}
+        // Pass individual flat properties instead of defaultValues object
+        amount={activeAmount}
+        isRecurring={isRecurring}
+        name={donorName}
+        dedication={donorMessage}
+        paymentMethod={paymentMethod}
+      />
     </main>
   );
 }
