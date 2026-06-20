@@ -2,9 +2,12 @@
 
 import * as React from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+// Import the true global seed data array directly
+import { dummyCampaigns } from "@/lib/dummy-data";
 
 // Import all audited design system components
-import { Badge } from "@/components/ui/badge";
+import { Badge, type BadgeCategory } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -33,94 +36,23 @@ import {
   Users,
 } from "lucide-react";
 
-// DUMMY DATA ENGINE (Typed to seamlessly feed the components)
-const CAMPAIGN_DATA = {
-  id: "edu-01",
-  title: "Bridge the Gap: Digital Classrooms for Rural Communities",
-  organization: "Tech For All Foundation",
-  location: "Enugu, Nigeria",
-  category: "Education as const",
-  isUrgent: true,
-  image:
-    "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1200",
-  currentAmount: 4850000,
-  goalAmount: 10000000,
-  donorCount: 342,
-  daysLeft: 14,
-  story: [
-    "In the heart of rural communities outside Enugu, hundreds of brilliant young minds sit in classrooms without access to a single computer or internet connection. White the digital economy accelarates globally, these children are being left behind simply because where they were born.",
-    "Our mission is simple but urgent: equip 5 rural community schools with solar-powered digital hubs, complete with 20 laptops each, robust offline educational servers, and modern teacher training program. This campaign directly provides the infrastructure required to shift these students from text book theory to real-world software leteracy.",
-    "Every single Naira contributed goes directly into equipment procurement, solar installations and  instructional auditing. We have secured structural site clearance across all 5 destination tracks-we just need your collective  strength to secure the hardware.",
-  ],
-  videoEmbedId: "dQw4w9WgXcQ", //Replacement token for structural youtube integration
-  impactPresets: {
-    "5000": "Provides 1 foundational offline curriculum textbook package.",
-    "10000":
-      "Provides 1 modern digital accessory kit (headset + optical mouse).",
-    "25000":
-      "Provides uninterrupted high-speed internet access for 1 classroom for 3 months.",
-    "50000":
-      "Procures 1 durable, energy-efficient educational tablet preloaded with sofware.",
-  },
-  updates: [
-    {
-      title: "Solar Provider Contract Signed",
-      time: "June 15, 2026",
-      content:
-        "We have officially formalized our structural partnership with Lumos Solar Africa. They have guaranteed priority installation windows across all 5 regional locations at zero logistics markup.",
-    },
-    {
-      title: "Community Clearance Secured",
-      time: "June 02, 2026",
-      content:
-        "Traditional rulers and local education boards across the destination zones have signed off on facility security blueprints. The rooms are painted, safe and ready for deployment.",
-    },
-  ],
-
-  donors: [
-    {
-      name: "Chidi Okocha",
-      amount: 50000,
-      message:
-        "Investing in our youth is investing in our future. Fantastic work, team!",
-      time: "2 hours ago",
-    },
-    {
-      name: "Anonymous",
-      amount: 10000,
-      message: "Keep pushing! Excited to see this launch.",
-      time: "5 hours ago",
-    },
-    {
-      name: "Amara Nwosu",
-      amount: 25000,
-      message: "For the bright minds of Enugu, God bless this infrastructure.",
-      time: "1 day ago",
-    },
-  ],
-  related: [
-    {
-      id: "health-02",
-      title: "Clean Water Infrastructure for Owerri Outposts",
-      current: 1200000,
-      goal: 3000000,
-      image: "/images/campaigns/waterinfrastructure.jpg",
-      category: "healthcare" as const,
-    },
-    {
-      id: "env-03",
-      title: "Solar Micro-Grids for Marketplace Women",
-      current: 8900000,
-      goal: 9000000,
-      image:
-        "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=400",
-      category: "environment" as const,
-    },
-  ],
+// IMMUTABLE BACKUP CONSTANTS FOR DATA FIELDS NOT DEFINED ON ALL CAMPAIGN SEED OBJECTS
+const IMMUTABLE_IMPACT_PRESETS = {
+  "5000": "Provides 1 foundational offline curriculum textbook package.",
+  "10000": "Provides 1 modern digital accessory kit (headset + optical mouse).",
+  "25000":
+    "Provides uninterrupted high-speed internet access for 1 classroom for 3 months.",
+  "50000":
+    "Procures 1 durable, energy-efficient educational tablet preloaded with software.",
 };
 
 export default function CampaignDetailPage() {
   const { id } = useParams();
+
+  // DYNAMIC LOOKUP MATRIX: Extracts parameter context strings safely
+  const campaign = React.useMemo(() => {
+    return dummyCampaigns.find((item) => item.id === id) || dummyCampaigns[0];
+  }, [id]);
 
   // FORMS STATES
   const [selectedAmount, setSelectedAmount] = React.useState<string>("10000");
@@ -148,7 +80,7 @@ export default function CampaignDetailPage() {
     if (amount >= 25000)
       return "Your contribution shields a classroom from network deficits by covering 3 months of uninterrupted grid data links.";
     if (amount >= 10000)
-      return "Your contribution  provides structural utility layout upgrades, supplying clean digital peripherals (headsets/mice).";
+      return "Your contribution provides structural utility layout upgrades, supplying clean digital peripherals (headsets/mice).";
     return `Your contribution of ₦${amount.toLocaleString()} fuels general hardware shipping and localized technical installation pools.`;
   };
 
@@ -177,37 +109,67 @@ export default function CampaignDetailPage() {
 
     setIsSubmitting(true);
 
-    // Simulate micro-transaction latency network loop
     setTimeout(() => {
       setIsSubmitting(false);
       toast.success(
         "Donation Processed!",
-        `Thank you ${donorName || "Anonymous"} for your incredible pledge of ₦${activeAmount.toLocaleString()} via ${paymentMethod.toUpperCase()}!`,
+        `Thank you ${donorName || "Anonymous"} for your incredible pledge of ₦${activeAmount.toLocaleString()} via ${paymentMethod.toUpperCase()}`!,
       );
-      // Reset contextual states
       setCustomAmount("");
       setDonorName("");
       setDonorMessage("");
     }, 2500);
   };
 
+  // Safe fallback processing defaults for sub-nested structures
+  const defaultStory = [
+    "Our mission is simple but urgent: deployment of sustainable field assets addressing immediate gaps.",
+    "Every contribution goes directly to structural layout deployment across regional coordinates.",
+  ];
+
+  const defaultUpdates = [
+    {
+      title: "Initial Tactical Review Complete",
+      time: "June 21, 2026",
+      content:
+        "Operational requirements verified. Site configurations mapped successfully.",
+    },
+  ];
+
+  const defaultDonors = [
+    {
+      name: "Anonymous Donor",
+      amount: 25000,
+      message: "Supporting great work!",
+      time: "Recently",
+    },
+  ];
+
+  // Helper calculation filter for bottom related sections
+  const relatedCampaigns = React.useMemo(() => {
+    return dummyCampaigns.filter((item) => item.id !== campaign.id).slice(0, 2);
+  }, [campaign.id]);
+
   return (
     <main className="min-h-screen bg-background-soft/30 font-sans text-text-primary antialiased pb-24">
       {/* 1. HERO GRAPHIC BANNER AREA */}
       <section className="relative w-full h-[460px] md:h-[540px] bg-black overflow-hidden select-none">
         <img
-          src={CAMPAIGN_DATA.image}
-          alt={CAMPAIGN_DATA.title}
-          className="w-full h-full object-cover opacity-80 scale-100 0bject-center"
+          src={campaign.image}
+          alt={campaign.title}
+          className="w-full h-full object-cover opacity-80 scale-100 object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
 
         {/* Floating Contextual Badges Container */}
         <div className="absolute top-6 left-4 md:left-12 flex flex-wrap gap-2.5 z-20">
-          <Badge category={CAMPAIGN_DATA.category as "education"} size="md">
-            {CAMPAIGN_DATA.category}
+          <Badge
+            category={campaign.category.toLowerCase() as BadgeCategory}
+            size="md"
+          >
+            {campaign.category}
           </Badge>
-          {CAMPAIGN_DATA.isUrgent && (
+          {campaign.status === "Urgent" && (
             <Badge variant="urgent" size="md">
               URGENT FUNDRAISER
             </Badge>
@@ -217,24 +179,24 @@ export default function CampaignDetailPage() {
         {/* Core floating metadata heading block */}
         <div className="absolute bottom-8 left-4 right-4 md:left-12 md:right-12 z-20 max-w-5xl space-y-4">
           <h1 className="text-2xl md:text-5xl font-black tracking-tight text-white leading-tight">
-            {CAMPAIGN_DATA.title}
+            {campaign.title}
           </h1>
           <div className="flex flex-wrap items-center text-white/90 gap-4 md:gap-6 text-sm font-medium">
             <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
               <Building2 className="w-4 h-4 text-sky-400" />
-              <span>{CAMPAIGN_DATA.organization}</span>
+              <span>{campaign.organizationName || "HopeConnect Partner"}</span>
             </div>
             <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
               <MapPin className="w-4 h-4 text-emerald-400" />
-              <span>{CAMPAIGN_DATA.location}</span>
+              <span>{campaign.location || "Global Outpost"}</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. DUAL COLUMN GRID STRUCTURAL CANVAS*/}
+      {/* 2. DUAL COLUMN GRID STRUCTURAL CANVAS */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* LEFT COLUMN: NARRATIVE, MEDIA,  UPDATES, LOGS (8 / 12 spans) */}
+        {/* LEFT COLUMN: NARRATIVE, MEDIA, UPDATES, LOGS (8 / 12 spans) */}
         <div className="lg:col-span-7 space-y-10">
           {/* PROGRESS INSIGHT PANEL CARD */}
           <Card
@@ -245,12 +207,12 @@ export default function CampaignDetailPage() {
           >
             <div className="p-2 space-y-6">
               <LinearProgress
-                value={CAMPAIGN_DATA.currentAmount}
-                max={CAMPAIGN_DATA.goalAmount}
+                value={campaign.currentAmount}
+                max={campaign.targetAmount}
                 variant="blue"
                 showPercentText={true}
                 milestones={[25, 50, 75, 100]}
-                label={`₦${CAMPAIGN_DATA.currentAmount.toLocaleString()} funded`}
+                label={`₦${campaign.currentAmount.toLocaleString()} funded`}
               />
 
               <div className="grid grid-cols-3 gap-4 pt-2 border-t border-text-light/10 text-center">
@@ -262,7 +224,7 @@ export default function CampaignDetailPage() {
                     </span>
                   </div>
                   <p className="text-xl md:text-2xl font-black text-gray-900">
-                    {CAMPAIGN_DATA.donorCount}
+                    {campaign.donorCount || 128}
                   </p>
                 </div>
                 <div className="space-y-1">
@@ -272,8 +234,8 @@ export default function CampaignDetailPage() {
                       Days Left
                     </span>
                   </div>
-                  <p className="text-xl md:text2xl font-black text-gray-900">
-                    {CAMPAIGN_DATA.daysLeft}
+                  <p className="text-xl md:text-2xl font-black text-gray-900">
+                    {campaign.daysRemaining || 14}
                   </p>
                 </div>
                 <div className="space-y-1">
@@ -284,7 +246,7 @@ export default function CampaignDetailPage() {
                     </span>
                   </div>
                   <p className="text-xl md:text-2xl font-black text-gray-900">
-                    ₦{CAMPAIGN_DATA.goalAmount.toLocaleString()}
+                    ₦{campaign.targetAmount.toLocaleString()}
                   </p>
                 </div>
               </div>
@@ -297,29 +259,34 @@ export default function CampaignDetailPage() {
               Campaign Story
             </h2>
             <div className="text-base text-gray-700 leading-relaxed space-y-4 font-normal">
-              {CAMPAIGN_DATA.story.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
+              {campaign.storyRichText ? (
+                <p>{campaign.storyRichText}</p>
+              ) : (
+                (campaign.description
+                  ? [campaign.description]
+                  : defaultStory
+                ).map((paragraph, index) => <p key={index}>{paragraph}</p>)
+              )}
             </div>
           </section>
 
           {/* VIDEO EMBED CONTAINER */}
           <section className="space-y-4">
             <h3 className="text-xl font-bold text-gray-900 tracking-tight">
-              Campaign Video Breif
+              Campaign Video Brief
             </h3>
             <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-text-light/10 bg-neutral-900">
               <iframe
-                src={`https://www.youtube.com/embed/${CAMPAIGN_DATA.videoEmbedId}`}
+                src={`https://www.youtube.com/embed/${campaign.youtubeEmbedUrl || "dQw4w9WgXcQ"}`}
                 title="Campaign video clip showcase"
-                className="absolute inet-0 w-full h-full"
+                className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
             </div>
           </section>
 
-          {/* DYNAMIC IMPACT PRESET INSIGHT DISPLAY (Featured Highlight Card) */}
+          {/* DYNAMIC IMPACT PRESET INSIGHT DISPLAY */}
           <section className="space-y-4">
             <h2 className="text-2xl font-black tracking-tight text-gray-900 border-b pb-2 border-gray-200">
               Impact Breakdown
@@ -352,14 +319,13 @@ export default function CampaignDetailPage() {
               Campaign Updates
             </h2>
             <div className="relative border-l-2 border-gray-200 pl-6 ml-3 space-y-8">
-              {CAMPAIGN_DATA.updates.map((update, idx) => (
+              {(campaign.updates || defaultUpdates).map((update, idx) => (
                 <div key={idx} className="relative group">
-                  {/* Floating Absolute Node Circle Dot */}
                   <div className="absolute -left-[31px] top-1 bg-white border-2 border-blue-600 rounded-full w-4 h-4 transition-transform group-hover:scale-125 z-10" />
                   <div className="space-y-1">
                     <span className="text-xs font-mono font-bold text-blue-600 flex items-center gap-1">
                       <Calendar className="w-3 h-3" />
-                      {update.time}
+                      {(update as any).date || (update as any).time}
                     </span>
                     <h3 className="text-lg font-bold text-gray-900 tracking-tight">
                       {update.title}
@@ -377,10 +343,10 @@ export default function CampaignDetailPage() {
           <section className="space-y-4">
             <h2 className="text-2xl font-black tracking-tight text-gray-900 border-b pb-2 border-gray-200 flex items-center gap-2">
               <MessageSquare className="w-5 h-5 text-gray-400" />
-              <span>Recent Donors ({CAMPAIGN_DATA.donorCount})</span>
+              <span>Recent Donors ({campaign.donorCount || 128})</span>
             </h2>
             <div className="space-y-3">
-              {CAMPAIGN_DATA.donors.map((donor, index) => (
+              {(campaign.recentDonors || defaultDonors).map((donor, index) => (
                 <Card
                   key={index}
                   padding="sm"
@@ -400,11 +366,13 @@ export default function CampaignDetailPage() {
                           +₦{donor.amount.toLocaleString()}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600 italic font-body">
-                        '{donor.message}'
-                      </p>
+                      {donor.message && (
+                        <p className="text-sm text-gray-600 italic font-body">
+                          '{donor.message}'
+                        </p>
+                      )}
                       <span className="text-[11px] text-gray-400 block pt-0.5 font-medium">
-                        {donor.time}
+                        {(donor as any).date || (donor as any).time}
                       </span>
                     </div>
                   </div>
@@ -415,7 +383,7 @@ export default function CampaignDetailPage() {
 
           {/* IMMUTABLE UTILITY SHARE ACTION BAR */}
           <section className="pt-4 border-t border-gray-200 space-y-3">
-            <h3 className="text-xs font-black uppercase tracking widest text-text-muted flex items-center gap-1.5">
+            <h3 className="text-xs font-black uppercase tracking-widest text-text-muted flex items-center gap-1.5">
               <Share2 className="w-3.5 h-3.5" />
               <span>Spread the Word & Support</span>
             </h3>
@@ -432,7 +400,7 @@ export default function CampaignDetailPage() {
                 variant="outline"
                 size="sm"
                 leftIcon={<Bird className="w-3.5 h-3.5" />}
-                onClick={() => window.open("https:twitter.com", "_blank")}
+                onClick={() => window.open("https://twitter.com", "_blank")}
               >
                 Twitter
               </Button>
@@ -440,7 +408,7 @@ export default function CampaignDetailPage() {
                 variant="outline"
                 size="sm"
                 leftIcon={<Book className="w-3.5 h-3.5" />}
-                onClick={() => window.open("https:facebook.com", "_blank")}
+                onClick={() => window.open("https://facebook.com", "_blank")}
               >
                 Facebook
               </Button>
@@ -496,7 +464,7 @@ export default function CampaignDetailPage() {
                 />
               </div>
 
-              {/* RENDER CONDITIONAL CUSTOM FIIELD INPUT NODE */}
+              {/* RENDER CONDITIONAL CUSTOM FIELD INPUT NODE */}
               {selectedAmount === "custom" && (
                 <div className="animate-in fade-in slide-in-from-top-2 duration-200">
                   <Input
@@ -511,18 +479,15 @@ export default function CampaignDetailPage() {
                 </div>
               )}
 
-              {/* DYNAMIC SIDEBAR PRESET IMPACT BREIF CONTEXT */}
+              {/* DYNAMIC SIDEBAR PRESET IMPACT BRIEF CONTEXT */}
               {selectedAmount !== "custom" && (
-                <div
-                  className="
-                bg-background-soft p-3 rounded-lg border border-text-light/5 text-xs text-gray-600 leading-relaxed font-medium"
-                >
+                <div className="bg-background-soft p-3 rounded-lg border border-text-light/5 text-xs text-gray-600 leading-relaxed font-medium">
                   <span className="font-bold text-gray-900 block uppercase tracking-wide text-[10px] mb-0.5">
                     Preset Objective
                   </span>
                   {
-                    CAMPAIGN_DATA.impactPresets[
-                      selectedAmount as keyof typeof CAMPAIGN_DATA.impactPresets
+                    IMMUTABLE_IMPACT_PRESETS[
+                      selectedAmount as keyof typeof IMMUTABLE_IMPACT_PRESETS
                     ]
                   }
                 </div>
@@ -531,7 +496,7 @@ export default function CampaignDetailPage() {
               {/* METRIC OPTION RECURRING TOGGLE CHECKBOX */}
               <div className="bg-background-soft/40 p-1.5 rounded-lg border border-dashed border-text-light/10">
                 <Checkbox
-                  label="Automate this gift monthly (Recurring Donation"
+                  label="Automate this gift monthly (Recurring Donation)"
                   checked={isRecurring}
                   onCheckedChange={(checked) => setIsRecurring(!!checked)}
                 />
@@ -543,7 +508,7 @@ export default function CampaignDetailPage() {
               <div className="space-y-3">
                 <Input
                   label="Your Name (Optional)"
-                  placeholder="Leaving blank mars as Anonymous"
+                  placeholder="Leaving blank marks as Anonymous"
                   value={donorName}
                   onChange={(e) => setDonorName(e.target.value)}
                 />
@@ -586,7 +551,7 @@ export default function CampaignDetailPage() {
                 </div>
               </div>
 
-              {/* PROMINENT ORANGE ACTION TRIGGER COMPONENT */}
+              {/* PROMINENT ACTION TRIGGER COMPONENT */}
               <Button
                 type="submit"
                 variant="secondary"
@@ -600,6 +565,8 @@ export default function CampaignDetailPage() {
           </Card>
         </div>
       </div>
+
+      {/* EXPLORE RE-ROUTE MATRIX CANVAS */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 mt-20 pt-10 border-t border-gray-200 space-y-6">
         <div className="space-y-1">
           <h2 className="text-2xl font-black tracking-tight text-gray-900">
@@ -612,7 +579,7 @@ export default function CampaignDetailPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {CAMPAIGN_DATA.related.map((rc) => (
+          {relatedCampaigns.map((rc) => (
             <Card
               key={rc.id}
               variant="default"
@@ -627,7 +594,10 @@ export default function CampaignDetailPage() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-2 left-2 z-10">
-                  <Badge category={rc.category} size="sm">
+                  <Badge
+                    category={rc.category.toLowerCase() as BadgeCategory}
+                    size="sm"
+                  >
                     {rc.category}
                   </Badge>
                 </div>
@@ -640,23 +610,19 @@ export default function CampaignDetailPage() {
                   <p className="text-xs font-medium text-gray-500">
                     Target:{" "}
                     <span className="font-bold text-gray-700">
-                      ₦{rc.goal.toLocaleString()}
+                      ₦{rc.targetAmount.toLocaleString()}
                     </span>
                   </p>
                 </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full md:w-max px-4"
-                  onClick={() =>
-                    toast.info(
-                      "Navigation Trigger",
-                      `Routing structural instance to secondary sandbox frame target ID: ${rc.id}`,
-                    )
-                  }
-                >
-                  View Fundraiser
-                </Button>
+                <Link href={`/campaigns/${rc.id}`} className="w-full md:w-max">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full md:w-max px-4 cursor-pointer"
+                  >
+                    View Fundraiser
+                  </Button>
+                </Link>
               </div>
             </Card>
           ))}

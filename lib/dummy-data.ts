@@ -143,6 +143,8 @@ export const dummyCampaigns: Campaign[] = [
     targetAmount: 35000,
     currentAmount: 28450,
     image: "/images/campaigns/emergencypipes.jpg",
+    daysRemaining: 12,
+    organizationName: "Global Health Alliance",
     tiers: [
       {
         amount: 25,
@@ -234,7 +236,9 @@ export const dummyCampaigns: Campaign[] = [
     status: "Urgent",
     targetAmount: 65000,
     currentAmount: 61800,
-    image: "/images/campaigns/nutrition.jpg", //To change later
+    image: "/images/campaigns/nutrition.jpg",
+    daysRemaining: 3,
+    organizationName: "Red Cross Emergency Response",
     tiers: [
       {
         amount: 35,
