@@ -49,6 +49,8 @@ export interface VolunteerOpportunity {
   slotsAvailable: number;
   image: string;
   skillsNeeded: string[];
+  timeCommitmentLabel: "One-time" | "Weekly" | "Monthly" | "Flexible";
+  locationType: "On-site" | "Remote" | "Hybrid";
 }
 
 export interface VolunteerProfile {
@@ -283,7 +285,7 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     title: "Weekend Food Security Support",
     description:
       "Sort nutritional supplies, pack dynamic family boxes and assist distribution teams at municipal parks.",
-    category: "poverty-relief",
+    category: "Event Support",
     location: "Metropolitan Food Distribution Hub",
     coordinates: { lat: 40.7128, lng: -74.006 },
     timeCommitment: "4 hours (Saturdays)",
@@ -292,13 +294,15 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     image:
       "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80", // Real volunteers distributing food supplies
     skillsNeeded: ["No Experience Needed", "Heavy Lifting", "Teamwork"],
+    timeCommitmentLabel: "Weekly",
+    locationType: "On-site",
   },
   {
     id: "opp-2",
     title: "Remote STEM Coding Mentor",
     description:
       "Guide high school students from underprivileged sectors through foundational interactive web design projects.",
-    category: "education",
+    category: "Education",
     location: "Remote / Online via Video Conference",
     coordinates: { lat: 0, lng: 0 },
     timeCommitment: "2 hours/week (Flexible)",
@@ -307,13 +311,15 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80", // Digital tutoring / mentoring in action
     skillsNeeded: ["HTML/CSS", "Mentoring", "Patient Communicator"],
+    timeCommitmentLabel: "Flexible",
+    locationType: "Remote",
   },
   {
     id: "opp-3",
     title: "Community Eco-Garden Build",
     description:
       "Help construct raised garden beds, set up irrigation paths, and plant native fruit crops for municipal food access.",
-    category: "environment",
+    category: "Environment",
     location: "Greenheart Urban Sanctuary",
     coordinates: { lat: 34.0522, lng: -118.2437 },
     timeCommitment: "One-time event (6 hours)",
@@ -322,13 +328,15 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     image:
       "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=800&q=80",
     skillsNeeded: ["Hand Tools", "Physical Stamina", "Outdoor Work"],
+    timeCommitmentLabel: "One-time",
+    locationType: "On-site",
   },
   {
     id: "opp-4",
     title: "Wildlife Sanctuary Habitat Care",
     description:
       "Assist veterinary containment teams in cleaning habitats, preparing specialized dietary arrays, and upgrading enclosures.",
-    category: "animal-welfare",
+    category: "Healthcare",
     location: "Riverside Rescue Center",
     coordinates: { lat: 34.0522, lng: -118.2437 },
     timeCommitment: "3 hours/week (3 mos.)",
@@ -337,6 +345,8 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     image:
       "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80",
     skillsNeeded: ["Animal Handling", "Detail Oriented", "Safety First"],
+    timeCommitmentLabel: "Weekly",
+    locationType: "Hybrid",
   },
 ];
 
