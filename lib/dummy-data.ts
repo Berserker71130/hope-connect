@@ -51,6 +51,14 @@ export interface VolunteerOpportunity {
   skillsNeeded: string[];
   timeCommitmentLabel: "One-time" | "Weekly" | "Monthly" | "Flexible";
   locationType: "On-site" | "Remote" | "Hybrid";
+  ageRequirement: string;
+  impact: string;
+  whatToBring: string[];
+  coordinator: {
+    name: string;
+    email: string;
+    phone: string;
+  };
 }
 
 export interface VolunteerProfile {
@@ -296,6 +304,20 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     skillsNeeded: ["No Experience Needed", "Heavy Lifting", "Teamwork"],
     timeCommitmentLabel: "Weekly",
     locationType: "On-site",
+    ageRequirement:
+      "16+ (Under 18 requires parental waiver signed by guardian)",
+    impact:
+      "Directly supplies healthy, life-sustaining groceries to over 150 low-income families every weekened.",
+    whatToBring: [
+      "Comfortable closed-toe athletic shoes",
+      "Refillable water bottle",
+      "Face mask (optional)",
+    ],
+    coordinator: {
+      name: "Marcus Miller",
+      email: "m.miller@hopeconnect.org",
+      phone: "+1 (555) 234-5678",
+    },
   },
   {
     id: "opp-2",
@@ -313,6 +335,19 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     skillsNeeded: ["HTML/CSS", "Mentoring", "Patient Communicator"],
     timeCommitmentLabel: "Flexible",
     locationType: "Remote",
+    ageRequirement: "18+ (Requires standard background clearance check)",
+    impact:
+      "Empowers 5 high school students with market-ready frontend developement fundamentals to break structural poverty cycles.",
+    whatToBring: [
+      "Stable high-speed internet connection",
+      "Laptop or Desktop computer with webcam",
+      "Discord account downloaded",
+    ],
+    coordinator: {
+      name: "Dr Elena Rostova",
+      email: "e.rostova@hopeconnect.org",
+      phone: "+1 (555) 876-5432",
+    },
   },
   {
     id: "opp-3",
@@ -330,6 +365,20 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     skillsNeeded: ["Hand Tools", "Physical Stamina", "Outdoor Work"],
     timeCommitmentLabel: "One-time",
     locationType: "On-site",
+    ageRequirement:
+      "14+ (Minors must be accompanied by an active adult volunteer)",
+    impact:
+      "Establishes a highly sustainable urban agricultural asset capable of yielding 500+ lbs of fresh produce annually.",
+    whatToBring: [
+      "Durable gardening gloves",
+      "Sunscreen and wide-brim hat",
+      "Work clothes that can get muddy",
+    ],
+    coordinator: {
+      name: "Carlos Mendez",
+      email: "c.mendez@hopeconnect.org",
+      phone: "+1 (555) 456-7890",
+    },
   },
   {
     id: "opp-4",
@@ -347,6 +396,20 @@ export const dummyOpportunities: VolunteerOpportunity[] = [
     skillsNeeded: ["Animal Handling", "Detail Oriented", "Safety First"],
     timeCommitmentLabel: "Weekly",
     locationType: "Hybrid",
+    ageRequirement:
+      "21+ (Strict policy due to direct wild animal safety frameworks)",
+    impact:
+      "Directly improves structural sanctuary hygiene and health optimization tracks for 45+ rescued regional animal species.",
+    whatToBring: [
+      "Sturdy waterproof boots",
+      "Change of utility clothing",
+      "Valid government-issued identification ID",
+    ],
+    coordinator: {
+      name: "Sarah Jenkins",
+      email: "s.jenkins@hopeconnect.org",
+      phone: "+1 (555) 987-6543",
+    },
   },
 ];
 

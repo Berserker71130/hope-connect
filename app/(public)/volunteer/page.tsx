@@ -403,7 +403,8 @@ function VolunteerContent() {
                       accentBar={
                         opp.locationType === "Remote" ? "blue" : "none"
                       }
-                      className="flex flex-col h-full bg-background-default shadow-sm border-text-light/10"
+                      className="flex flex-col h-full bg-background-default shadow-sm border-text-light/10 cursor-pointer group hover:border-blue-500/30 hover:shadow-md transition-all duration-200"
+                      onClick={() => router.push(`/volunteer/${opp.id}`)}
                     >
                       <div className="relative h-48 w-full bg-background-muted overflow-hidden">
                         <img
@@ -475,7 +476,7 @@ function VolunteerContent() {
                         <Button
                           variant="primary"
                           size="md"
-                          className="w-full"
+                          className="w-full pointer-events-none"
                           disabled={opp.slotsAvailable === 0}
                         >
                           {opp.slotsAvailable === 0
@@ -513,7 +514,8 @@ function VolunteerContent() {
                     {filteredOpportunities.map((opp) => (
                       <div
                         key={opp.id}
-                        className="flex justify-between border-b border-text-light/5 pb-1 last:border-0"
+                        className="flex justify-between border-b border-text-light/5 pb-1 last:border-0 hover:text-blue-600 cursor-pointer"
+                        onClick={() => router.push(`/volunteer/${opp.id}`)}
                       >
                         <span className="font-semibold text-text-primary truncate max-w-[200px]">
                           {opp.title}
