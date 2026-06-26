@@ -86,6 +86,9 @@ export interface ImpactStory {
   outcome: string;
   narrative: string;
   image: string;
+  year: string;
+  videoUrl?: string;
+  isFeatured?: boolean;
 }
 
 export interface NGOEvent {
@@ -478,6 +481,8 @@ export const dummyImpactStories: ImpactStory[] = [
       "Amara, a determined student from a low-income neighborhood, faced significant barriers to accessing quality technical education. Through our Bright Futures digital literacy initiatives, she received a tablet preloaded with software along with dedicated access to online training materials...",
     image:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    year: "2026",
+    isFeatured: true,
   },
   {
     id: "story-2",
@@ -493,6 +498,8 @@ export const dummyImpactStories: ImpactStory[] = [
       "Living in an isolated territory cut off from municipal clinical centers, Elena struggled to find stable health oversight. Our expansion health unit reached her community in record time, deploying necessary medical support packages directly to her doorstep...",
     image:
       "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
+    year: "2026",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9wgXcQ",
   },
   {
     id: "story-3",
@@ -508,6 +515,7 @@ export const dummyImpactStories: ImpactStory[] = [
       "Sudden economic contraction left Samuel and his dependents facing an immediate food deficit gap. Accessing the weekly municipal park distribution network enabled them to stabilize their essential food requirements safely...",
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    year: "2025",
   },
   {
     id: "story-4",
@@ -523,6 +531,7 @@ export const dummyImpactStories: ImpactStory[] = [
       "Severe seasonal storms and aggressive erosion threatened the physical stability of Ananya's coastal fishing community. By organizing a localized restoration drive, residents planted thousands of native saplings that have grown into a massive natural barrier.",
     image:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80", // Dignified, professional portrait
+    year: "2025",
   },
 
   {
@@ -539,6 +548,8 @@ export const dummyImpactStories: ImpactStory[] = [
       "When unexpected heavy rainfall triggered destructive flash flooding across the valley, Mateo's family lost access to clean municipal infrastructure. The immediate arrival of our disaster response units successfully prevented contamination outbreaks.",
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80", // Dignified, professional portrait
+    year: "2026",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
   },
 ];
 
