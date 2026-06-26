@@ -141,6 +141,19 @@ export interface PartnerOrganization {
   logoUrl: string;
 }
 
+export interface LoggedHourEntry {
+  id: string;
+  volunteerId: string;
+  date: string;
+  opportunityId: string;
+  opportunityTitle: string; // Stored flat for effortless sorting & filtering
+  hours: number;
+  description: string;
+  supervisorName?: string;
+  photoEvidenceUrl?: string;
+  status: "Pending" | "Approved";
+}
+
 // SEED DATA ARRAYS
 export const dummyCampaigns: Campaign[] = [
   {
@@ -224,7 +237,7 @@ export const dummyCampaigns: Campaign[] = [
         date: "3 days ago",
         title: "Tablet Batch Shipment Arrived",
         content:
-          "The hardware shipment has cleared customs safely. Set up an orientation sessions begin next week.",
+          "The hardware shipment has cleared customs safely. Set up an orientation sessions begin next week`.",
       },
     ],
   },
@@ -735,5 +748,44 @@ export const dummyHomeStats: HomeImpactStat[] = [
       "Isolated rural territories fully integrated into our regional development and clean water systems.",
     iconBgColor: "bg-orange-50 dark:bg-orange-950/20",
     iconColor: "text-orange-600 dark:text-orange-400",
+  },
+];
+
+export const dummyLoggedHours: LoggedHourEntry[] = [
+  {
+    id: "log-1",
+    volunteerId: "vol-user-01",
+    date: "2026-06-06",
+    opportunityId: "opp-1",
+    opportunityTitle: "Weekend Food Security Support",
+    hours: 4,
+    description:
+      "Sorted fresh produce and packed 25 family supply boxes at the central distribution warehouse.",
+    supervisorName: "Marcus Miller",
+    status: "Approved",
+  },
+  {
+    id: "log-2",
+    volunteerId: "vol-user-01",
+    date: "2026-06-13",
+    opportunityId: "opp-1",
+    opportunityTitle: "Weekend Food Security Support",
+    hours: 4,
+    description:
+      "Assisted the logistics loading team with distributing boxes directly to families at municipal parks.",
+    supervisorName: "Marcus Miller",
+    status: "Approved",
+  },
+  {
+    id: "log-3",
+    volunteerId: "vol-user-01",
+    date: "2026-06-22",
+    opportunityId: "opp-3",
+    opportunityTitle: "Community Eco-Garden Build",
+    hours: 6,
+    description:
+      "Operated hand tools to build three raised wood beds and laid baseline gravel paths.",
+    supervisorName: "Carlos Mendez",
+    status: "Pending",
   },
 ];
