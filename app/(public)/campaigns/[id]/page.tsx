@@ -22,6 +22,8 @@ import { RadioGroup } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/toast";
 import { DonationModal } from "@/components/donation/donation-modal";
+import { FaFacebookF, FaWhatsapp } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import {
   Bird,
   Book,
@@ -384,7 +386,7 @@ export default function CampaignDetailPage() {
               <Button
                 variant="outline"
                 size="sm"
-                leftIcon={<Send className="w-3.5 h-3.5" />}
+                leftIcon={<FaWhatsapp className="w-3.5 h-3.5" />}
                 onClick={() => window.open("https://wa.me", "_blank")}
               >
                 Whatsapp
@@ -392,7 +394,7 @@ export default function CampaignDetailPage() {
               <Button
                 variant="outline"
                 size="sm"
-                leftIcon={<Bird className="w-3.5 h-3.5" />}
+                leftIcon={<FaSquareXTwitter className="w-3.5 h-3.5" />}
                 onClick={() => window.open("https://twitter.com", "_blank")}
               >
                 Twitter
@@ -400,7 +402,7 @@ export default function CampaignDetailPage() {
               <Button
                 variant="outline"
                 size="sm"
-                leftIcon={<Book className="w-3.5 h-3.5" />}
+                leftIcon={<FaFacebookF className="w-3.5 h-3.5" />}
                 onClick={() => window.open("https://facebook.com", "_blank")}
               >
                 Facebook

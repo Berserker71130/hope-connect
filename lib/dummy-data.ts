@@ -172,6 +172,23 @@ export const dummyCampaigns: Campaign[] = [
           "Funds basic plumbing parts and maintenance kits for village community wells.",
       },
     ],
+    updates: [
+      {
+        id: "upd-1",
+        date: "2 hours ago",
+        title: "Flash Flood Emergency Deployment",
+        content:
+          "Sudden heavy rainfall  near the Serrana Valley region requires immediate onsite water logistics support teams.",
+      },
+
+      {
+        id: "upd-2",
+        date: "1 day ago",
+        title: "Phase 2 Pipiline Construction Completed",
+        content:
+          "Thanks to recent mobilizations, the baseline plumbing lines for the northern district are now 100% operational.",
+      },
+    ],
   },
   {
     id: "camp-2",
@@ -199,6 +216,15 @@ export const dummyCampaigns: Campaign[] = [
         amount: 500,
         impact:
           "Supports the installation of high-speed internet and a computer lab for an entire school.",
+      },
+    ],
+    updates: [
+      {
+        id: "upd-3",
+        date: "3 days ago",
+        title: "Tablet Batch Shipment Arrived",
+        content:
+          "The hardware shipment has cleared customs safely. Set up an orientation sessions begin next week.",
       },
     ],
   },
