@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import {
   Play,
   Search,
@@ -33,6 +34,7 @@ import {
 } from "@/lib/dummy-data";
 
 export default function PremiumImpactStoriesPage() {
+  const router = useRouter();
   // Mounting protection guard to safely synchronize Radix UI viewports with Next.js SSR
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -210,7 +212,7 @@ export default function PremiumImpactStoriesPage() {
                     variant="primary"
                     size="lg"
                     rightIcon={<ArrowUpRight className="w-4 h-4" />}
-                    onClick={() => setActiveStory(featuredStory)}
+                    onClick={() => router.push(`/impact/${featuredStory.id}`)}
                     className="w-full sm:w-auto shrink-0 shadow-lg"
                   >
                     Read Full Blueprint
@@ -330,7 +332,7 @@ export default function PremiumImpactStoriesPage() {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => setActiveStory(story)}
+                    onClick={() => router.push(`/impact/${story.id}`)}
                     className="border-slate-200 text-slate-700 bg-white hover:bg-slate-50 hover:text-blue-600 shadow-xs"
                   >
                     Read Story

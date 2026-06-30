@@ -89,6 +89,18 @@ export interface ImpactStory {
   year: string;
   videoUrl?: string;
   isFeatured?: boolean;
+  beneficiaryAge?: string;
+  beneficiaryBackground?: string;
+  beforeSituation: string;
+  ourWork: string;
+  afterSituation: string;
+  metricsProgress: {
+    label: string;
+    percentageValue: number;
+    displayValue: string;
+  }[];
+  gallery?: string[];
+  relatedCampaignId?: string;
 }
 
 export interface NGOEvent {
@@ -483,6 +495,33 @@ export const dummyImpactStories: ImpactStory[] = [
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
     year: "2026",
     isFeatured: true,
+    // CRITERIA EXPANSIONS
+    beneficiaryAge: "19 Years Old",
+    beneficiaryBackground:
+      "Grew up in an underserved suburb of Dakar with limited access to modern hardware tools, electricity grids, or formal computer training tracks.",
+    beforeSituation:
+      "Amara attended a local secondary school with zero computers or data links. Her career path was constrained to low-skill labor, despite showing an incredible natural talent for logical math frameworks.",
+    ourWork:
+      "HopeConnect deployed a solar-powered computer learning container to her district, outfitting it with 20 tablets and local network resources. Amara was paired with a remote industry mentor for 12 months.",
+    afterSituation:
+      "Amara mastered frontend web fundamentals and built an agricultural supply tracking application for her town. Based on her project portfolio, she was awarded a 100% covered technical engineering scholarship.",
+    metricsProgress: [
+      {
+        label: "Technical Competency Level",
+        percentageValue: 85,
+        displayValue: "85% Score",
+      },
+      {
+        label: "Regional Literacy Uplift",
+        percentageValue: 40,
+        displayValue: "40% Increase",
+      },
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
+    ],
+    relatedCampaignId: "camp-2",
   },
   {
     id: "story-2",
@@ -500,6 +539,33 @@ export const dummyImpactStories: ImpactStory[] = [
       "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
     year: "2026",
     videoUrl: "https://www.youtube.com/embed/dQw4w9wgXcQ",
+    // CRITERIA EXPANSIONS
+    beneficiaryAge: "26 Years Old",
+    beneficiaryBackground:
+      "Mother of two living in an off-grid mountain community located over 45 miles away from the closest clinical facility or primary care pharmacy.",
+    beforeSituation:
+      "Infant mortality risks were high due to completely absent maternal checkups, unmonitored birth conditions, and a total lack of standard basic childhood vaccine panels.",
+    ourWork:
+      "Dispatched an all-terrain multi-stage mobile healthcare vehicle to run recurring diagnostic sessions, distribute sterile midwife delivery kits, and manage specialized infant vaccine courses.",
+    afterSituation:
+      "Elena’s newborn recovered fully from an acute respiratory virus using on-board diagnostics. The entire village cluster now has structured medical checkups twice per month.",
+    metricsProgress: [
+      {
+        label: "Infant Immunization Rate",
+        percentageValue: 100,
+        displayValue: "100% Covered",
+      },
+      {
+        label: "Emergency Response Times",
+        percentageValue: 75,
+        displayValue: "75% Faster",
+      },
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
+    ],
+    relatedCampaignId: "camp-4",
   },
   {
     id: "story-3",
@@ -516,6 +582,32 @@ export const dummyImpactStories: ImpactStory[] = [
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
     year: "2025",
+    // CRITERIA EXPANSIONS
+    beneficiaryAge: "42 Years Old",
+    beneficiaryBackground:
+      "Seasonal agricultural day laborer and primary provider for a household of five, deeply vulnerable to macroeconomic supply disruptions.",
+    beforeSituation:
+      "A severe drought triggered a total freeze in regional crop harvesting contracts, dropping Samuel’s family income to zero and inducing acute food rationing.",
+    ourWork:
+      "Enrolled the family into our recurring Food Security Support pipeline, providing dynamic dry-good supply boxes containing balanced proteins, grains, and infant formulas.",
+    afterSituation:
+      "With basic caloric baselines secured without debt accumulation, Samuel successfully navigated the farming off-season and secured a long-term logistics job.",
+    metricsProgress: [
+      {
+        label: "Household Caloric Security",
+        percentageValue: 100,
+        displayValue: "100% Secured",
+      },
+      {
+        label: "Monthly Grocery Cost Saved",
+        percentageValue: 65,
+        displayValue: "65% Reduction",
+      },
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
+    ],
+    relatedCampaignId: "camp-1",
   },
   {
     id: "story-4",
@@ -530,10 +622,35 @@ export const dummyImpactStories: ImpactStory[] = [
     narrative:
       "Severe seasonal storms and aggressive erosion threatened the physical stability of Ananya's coastal fishing community. By organizing a localized restoration drive, residents planted thousands of native saplings that have grown into a massive natural barrier.",
     image:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80", // Dignified, professional portrait
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
     year: "2025",
+    // CRITERIA EXPANSIONS
+    beneficiaryAge: "35 Years Old",
+    beneficiaryBackground:
+      "Artisanal small-scale fisherwoman and local environmental advocate whose ancestral property sits along the rising tideline.",
+    beforeSituation:
+      "Unchecked high-energy storm waves washed away up to 15 meters of topsoil annually, flooding seaside homes and salinating clean groundwater drinking wells.",
+    ourWork:
+      "Mobilized local volunteer squads to construct protective wave breaks and plant 4,500 native mangrove saplings along endangered coastal points.",
+    afterSituation:
+      "The expanded root matrix successfully absorbed the impact of recent monsoon tides, preventing property erosion and re-establishing native fish breeding grounds.",
+    metricsProgress: [
+      {
+        label: "Shoreline Shield Density",
+        percentageValue: 90,
+        displayValue: "2km Restored",
+      },
+      {
+        label: "Groundwater Protection",
+        percentageValue: 80,
+        displayValue: "80% Risk Reduc.",
+      },
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=800&q=80",
+    ],
+    relatedCampaignId: "camp-3",
   },
-
   {
     id: "story-5",
     title: "Rebuilding After the Flash Flood",
@@ -547,9 +664,35 @@ export const dummyImpactStories: ImpactStory[] = [
     narrative:
       "When unexpected heavy rainfall triggered destructive flash flooding across the valley, Mateo's family lost access to clean municipal infrastructure. The immediate arrival of our disaster response units successfully prevented contamination outbreaks.",
     image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80", // Dignified, professional portrait
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
     year: "2026",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    // CRITERIA EXPANSIONS
+    beneficiaryAge: "50 Years Old",
+    beneficiaryBackground:
+      "Community group leader and carpenter responsible for neighborhood resource coordination during regional emergency events.",
+    beforeSituation:
+      "A flash flood wrecked the regional pumping house, filling domestic pipes with toxic mud sludge and cutting off clean drinking fluids entirely.",
+    ourWork:
+      "Air-dropped rapid tactical water filter packs, high-density storage bladders, and nutrient paste supplies to the municipal shelter outpost within 12 hours.",
+    afterSituation:
+      "Zero waterborne illness outbreaks were recorded across the 400 displaced inhabitants while engineers rebuilt the baseline regional pipelines.",
+    metricsProgress: [
+      {
+        label: "Emergency Supply Fluidity",
+        percentageValue: 95,
+        displayValue: "Within 12 Hrs",
+      },
+      {
+        label: "Waterborne Disease Incident",
+        percentageValue: 0,
+        displayValue: "0% Outbreaks",
+      },
+    ],
+    gallery: [
+      "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
+    ],
+    relatedCampaignId: "camp-5",
   },
 ];
 
