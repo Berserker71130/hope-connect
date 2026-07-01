@@ -138,6 +138,15 @@ export interface Testimonial {
   role: "Donor" | "Beneficiary" | "Volunteer";
   quote: string;
   avatar: string;
+  donationType?:
+    | "One-time Donor"
+    | "Recurring Monthly Support"
+    | "Annual Champion";
+  date?: string;
+  location?: string;
+  rating?: number;
+  isVerified?: boolean;
+  videoUrl?: string;
 }
 
 export interface ImpactReport {
@@ -776,6 +785,69 @@ export const dummyTestimonials: Testimonial[] = [
       "The explicit transparency and detailed operational maps make me absolute in my knowledge of where every single dollar is being put to use. It’s the only charity I trust with my contributions.",
     avatar:
       "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80",
+    donationType: "Recurring Monthly Support",
+    date: "May 14, 2026",
+    location: "Seattle, WA",
+    rating: 5,
+    isVerified: true,
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  },
+  {
+    id: "test-2",
+    author: "Dr. Sarah Jenkins",
+    role: "Donor",
+    quote:
+      "When the flash flood disaster hit the Serrana Valley, I wanted an organization that could deploy tactical clean water filters immediately. This team had boots on the ground within 12 hours.",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+    donationType: "One-time Donor",
+    date: "June 02, 2026",
+    location: "Austin, TX",
+    rating: 5,
+    isVerified: true,
+  },
+  {
+    id: "test-3",
+    author: "David Cho",
+    role: "Donor",
+    quote:
+      "The digital literacy initiative resonates deeply with my personal background. Providing tablets preloaded with educational software gives these students real options for their future engineering tracks.",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
+    donationType: "Recurring Monthly Support",
+    date: "April 28, 2026",
+    location: "San Francisco, CA",
+    rating: 4,
+    isVerified: true,
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  },
+  {
+    id: "test-4",
+    author: "Elena Rostova",
+    role: "Donor",
+    quote:
+      "Their financial transparency metrics are what won me over. Every quarter you receive audited tracking indicators that map exactly where funds go across the healthcare and environment modules.",
+    avatar:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+    donationType: "Annual Champion",
+    date: "March 11, 2026",
+    location: "Chicago, IL",
+    rating: 5,
+    isVerified: true,
+  },
+  {
+    id: "test-5",
+    author: "Robert Langford",
+    role: "Donor",
+    quote:
+      "Sponsoring the coastal mangrove restoration drive was seamless. I instantly received a localized tracking receipt along with coordinate frameworks showing exactly where our trees were planted.",
+    avatar:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&q=80",
+    donationType: "One-time Donor",
+    date: "January 19, 2026",
+    location: "London, UK",
+    rating: 5,
+    isVerified: false,
   },
 ];
 
